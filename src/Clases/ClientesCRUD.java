@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 
 /**
- *
- * @author amart
+ * La clase ClientesCRUD contiene métodos para realizar operaciones CRUD
+ * (Crear, Leer, Actualizar, Eliminar) sobre la tabla "clientes" en la base de datos.
+ * 
+ * @autor amart
  */
 public class ClientesCRUD {
     Conexion objetoConex =  new Conexion();
@@ -19,6 +21,12 @@ public class ClientesCRUD {
     ResultSet rs;
     
     
+     /**
+     * Registra un nuevo cliente en la base de datos.
+     * 
+     * @param cl El objeto Clientes que contiene la información del cliente a registrar.
+     * @return true si el registro fue exitoso, false en caso contrario.
+     */
     public boolean RegistrarCliente(Clientes cl){
         String sql = "INSERT INTO clientes  (DNI, nombre, telefono,direccion, razonsocial) VALUES (?,?,?,?,?)";
         try {
@@ -42,6 +50,11 @@ public class ClientesCRUD {
             }
         }
     }
+    /**
+     * Lista todos los clientes registrados en la base de datos.
+     * 
+     * @return Una lista de objetos Clientes que contiene la información de todos los clientes.
+     */
     public List ListarCliente(){
         List<Clientes> listaCl = new ArrayList();
         String sql ="SELECT * from clientes";
@@ -64,6 +77,12 @@ public class ClientesCRUD {
         }
         return listaCl;
     }
+    /**
+     * Elimina un cliente de la base de datos.
+     * 
+     * @param id El ID del cliente a eliminar.
+     * @return true si la eliminación fue exitosa, false en caso contrario.
+     */
     public boolean EliminarCliente(int id){
         String sql = "DELETE FROM clientes WHERE idClientes = ?";
         try {
@@ -83,6 +102,13 @@ public class ClientesCRUD {
             }
         }
     }
+    
+    /**
+     * Modifica la información de un cliente en la base de datos.
+     * 
+     * @param client El objeto Clientes que contiene la información actualizada del cliente.
+     * @return true si la actualización fue exitosa, false en caso contrario.
+     */
     public boolean ModificarCliente(Clientes client){
         String sql = "UPDATE clientes SET DNI=?,nombre=?,telefono=?,direccion=?,razonsocial=? WHERE idClientes=?";
         try {
@@ -113,6 +139,13 @@ public class ClientesCRUD {
     //              NUEVO PEDIDO
     //######################################
     
+    /**
+     * Busca un cliente por su nombre en la base de datos.
+     * 
+     * @param nombre El nombre del cliente a buscar.
+     * @return Un objeto Clientes que contiene la información del cliente encontrado.
+     */
+    
     public Clientes BuscarCliente(String nombre){
         Clientes objetoCliente = new Clientes();
         String sql = "SELECT * FROM clientes WHERE nombre= ? ";
@@ -134,7 +167,11 @@ public class ClientesCRUD {
         return objetoCliente;
     }
     
-   
+   /**
+     * Consulta todos los nombres de clientes y los agrega a un JComboBox.
+     * 
+     * @param cliente El JComboBox al que se agregarán los nombres de los clientes.
+     */
     public void ConsultarCliente(JComboBox cliente){
         String sql = "SELECT nombre FROM clientes";
         try {

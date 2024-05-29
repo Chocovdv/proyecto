@@ -9,8 +9,9 @@ import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author amart
+ * La clase Conexion establece y cierra la conexión a la base de datos MySQL.
+ * 
+ * @autor amart
  */
 public class Conexion {
     String bd1="bodega";
@@ -21,6 +22,11 @@ public class Conexion {
     String driver = "com.mysql.jdbc.Driver";
     Connection conex = null;
     
+    /**
+     * Establece una conexión a la base de datos MySQL.
+     * 
+     * @return Un objeto Connection que representa la conexión a la base de datos.
+     */
     public Connection conectar(){
         try{
             Class.forName(driver);
@@ -31,6 +37,9 @@ public class Conexion {
         }
         return conex;
     }
+    /**
+     * Cierra la conexión a la base de datos MySQL.
+     */
     public void desconectar(){
         try{
             if(conex!=null && !conex.isClosed()){
