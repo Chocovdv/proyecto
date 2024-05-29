@@ -93,7 +93,9 @@ public class FrmMenu extends javax.swing.JFrame {
     }
     
     
-    
+    /**
+ * Método para listar los clientes en una tabla.
+ */
     public void listarCliente(){
         List<Clientes> listarCl = clientesCRUD.ListarCliente();
         modelo = (DefaultTableModel) TablaCliente.getModel();
@@ -109,6 +111,9 @@ public class FrmMenu extends javax.swing.JFrame {
         }
         TablaCliente.setModel(modelo);
     }
+    /**
+ * Método para listar los proveedores en una tabla.
+ */
     public void listarProveedor(){
         List<Proveedor> listarProv = proveedorCRUD.ListarProveedor();
         modelo = (DefaultTableModel) TablaProveedor.getModel();
@@ -124,6 +129,9 @@ public class FrmMenu extends javax.swing.JFrame {
         }
         TablaProveedor.setModel(modelo);
     }
+    /**
+ * Método para listar los productos en una tabla.
+ */
     public void listarProdcutos(){
         List<Productos> listarProd = productoCRUD.ListarProducto();
         modelo = (DefaultTableModel) TablaProducto.getModel();
@@ -139,6 +147,9 @@ public class FrmMenu extends javax.swing.JFrame {
         }
         TablaProducto.setModel(modelo);
     }
+    /**
+ * Método para listar los pedidos en una tabla.
+ */
     public void listarPedidos(){
         List<Ventas> listarPedidos = ventasCUD.ListarPedidos();
         modelo = (DefaultTableModel) TablaVentas.getModel();
@@ -152,6 +163,9 @@ public class FrmMenu extends javax.swing.JFrame {
         }
         TablaVentas.setModel(modelo);
     }
+    /**
+ * Método para listar los empleados en una tabla.
+ */
     public void listarEmpleados(){
         List<Usuario> listarEmple = empleadosCRUD.ListarEmpleado();
         modelo = (DefaultTableModel) TablaEmpleados.getModel();
@@ -166,12 +180,18 @@ public class FrmMenu extends javax.swing.JFrame {
         TablaEmpleados.setModel(modelo);
     }
     
+    /**
+ * Método para limpiar los campos de la tabla.
+ */
     public void limpiarCampos(){
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.removeRow(i);
             i = i - 1;
         }
     }
+    /**
+ * Método para limpiar los campos de cliente.
+ */
     public void limpiarCliente(){
         txtIdCliente.setText("");
         txtDNICliente.setText("");
@@ -181,6 +201,9 @@ public class FrmMenu extends javax.swing.JFrame {
         txtRazonSocialCliente.setText("");
         
     }
+    /**
+ * Método para limpiar los campos de proveedor.
+ */
     public void limpiarProveedor(){
         txtIdProveedor.setText("");
         txtNIFProveedor.setText("");
@@ -190,6 +213,9 @@ public class FrmMenu extends javax.swing.JFrame {
         txtRazonSocialProveedor.setText("");
         
     }
+    /**
+ * Método para limpiar los campos de producto.
+ */
     public void limpiarProducto(){
         txtIdProducto.setText("");
         txtCodigoProd.setText("");
@@ -199,6 +225,9 @@ public class FrmMenu extends javax.swing.JFrame {
         txtPrecioProd.setText("");
         
     }
+    /**
+ * Método para limpiar los campos de empleados.
+ */
     public void limpiarEmpleados(){
         txtIdEmpleado.setText("");
         txtNombreEmpleado.setText("");
@@ -207,6 +236,9 @@ public class FrmMenu extends javax.swing.JFrame {
         
     }
     
+    /**
+ * Método para limpiar los campos de un nuevo pedido.
+ */
     public void LimpiarCamposPedido(){
         txtCodigoVenta.setText("");
         cbxProductos.setSelectedIndex(0);
@@ -217,6 +249,9 @@ public class FrmMenu extends javax.swing.JFrame {
         txtIDVenta.setText("");
     }
     
+    /**
+ * Método para limpiar una nueva venta.
+ */
     private void LimpiarNuevoPedido(){
         mod = (DefaultTableModel) TablaVenta.getModel();
         int fila = TablaVenta.getRowCount();
@@ -225,6 +260,9 @@ public class FrmMenu extends javax.swing.JFrame {
             
         }
     }
+    /**
+ * Método para limpiar los campos del cliente en un nuevo pedido.
+ */
     private void LimpiarClienteNuevoPedido(){
         txtDNICliente.setText("");
         txtNombreClienteVenta.setText("");
@@ -234,6 +272,9 @@ public class FrmMenu extends javax.swing.JFrame {
         
     }
     
+    /**
+ * Método para registrar una venta en el sistema.
+ */
     private void RegistrarVenta(){
         String cliente = txtNombreClienteVenta.getText();
         String empleado = lblEmpleado.getText();
@@ -245,6 +286,9 @@ public class FrmMenu extends javax.swing.JFrame {
         ventasCUD.RegistrarVenta(ventas);
     }
     
+    /**
+ * Método para registrar un pedido en el sistema.
+ */
     private void RegistrarPedido(){
         int id = ventasCUD.IdVentas();
         for (int i = 0; i < TablaVenta.getRowCount(); i++) {
@@ -259,6 +303,9 @@ public class FrmMenu extends javax.swing.JFrame {
         }
     }
     
+    /**
+ * Método para actualizar el stock disponible después de una venta.
+ */
     private void ActualizarStockDisponible(){
         for (int i = 0; i < TablaVenta.getRowCount(); i++) {
             String producto = TablaVenta.getValueAt(i,1).toString();
@@ -270,6 +317,9 @@ public class FrmMenu extends javax.swing.JFrame {
         }
     }
     
+    /**
+ * Método para verificar y añadir una cantidad de producto al pedido.
+ */
     private void CantidadStock(){
         if(!"".equals(txtCantidadVenta.getText())){
             String codigo = txtCodigoVenta.getText();
@@ -317,7 +367,9 @@ public class FrmMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese una cantidad");
         }     
     }
-    
+    /**
+ * Método para calcular el total de la venta en el pedido.
+ */
     private void CalcularTotal(){
         int filas=TablaVenta.getRowCount();
         TotalaPagar=0;

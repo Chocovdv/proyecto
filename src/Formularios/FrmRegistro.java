@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
+ * Este formulario permite a los usuarios registrarse en el sistema.
  *
  * @author amart
  */
@@ -23,6 +24,12 @@ public class FrmRegistro extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    /**
+     * Guarda un nuevo usuario en la base de datos.
+     * @param nombre El nombre del usuario.
+     * @param user El nombre de usuario.
+     * @param password La contraseña del usuario.
+     */
     public void guardarUser(String nombre,String user, String password){
         Clases.Conexion objetoConex = new Conexion();
         String passEncript = BCrypt.hashpw(password, BCrypt.gensalt());

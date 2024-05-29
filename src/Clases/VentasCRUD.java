@@ -17,7 +17,11 @@ public class VentasCRUD {
     ResultSet rs;
     int respuesta;
     
-    
+    /**
+     * Registra una nueva venta en la base de datos.
+     * @param venta La venta a registrar.
+     * @return El resultado de la operación de registro.
+     */
     public int RegistrarVenta(Ventas venta){
         String sql ="INSERT INTO ventas (idClientes,idUsuario, total,fecha) VALUES (?,?,?,?)";
         try {
@@ -40,7 +44,11 @@ public class VentasCRUD {
         }
         return respuesta;
     }
-    
+    /**
+     * Registra un nuevo pedido en la base de datos.
+     * @param pedido El pedido a registrar.
+     * @return El resultado de la operación de registro.
+     */
     public int RegistrarPedido(Pedidos pedido){
         String sql = "INSERT INTO ventas_has_productos (idProductos,Cantidad,Precio,idVentas) VALUES (?,?,?,?)";
         try {
@@ -63,6 +71,12 @@ public class VentasCRUD {
         return respuesta;
         
     }
+    /**
+     * Actualiza el stock de un producto en la base de datos.
+     * @param cantidad La nueva cantidad de stock.
+     * @param producto El nombre del producto.
+     * @return true si la actualización fue exitosa, false si ocurrió un error.
+     */
     public boolean ActualizarStock(int cantidad, String producto){
         String sql ="UPDATE productos SET stock=? WHERE nombre=?";
         try{
@@ -77,6 +91,10 @@ public class VentasCRUD {
             return false;
         }
     }
+    /**
+     * Lista todos los pedidos almacenados en la base de datos.
+     * @return Una lista de pedidos.
+     */
     public List ListarPedidos(){
         List<Ventas> listaPedidos = new ArrayList();
         String sql ="SELECT * from ventas";
@@ -97,6 +115,10 @@ public class VentasCRUD {
         }
         return listaPedidos;
     }
+    /**
+     * Obtiene el ID de la última venta registrada en la base de datos.
+     * @return El ID de la última venta.
+     */
     public int IdVentas(){
         int id = 0;
         String sql = "SELECT MAX(idVentas) FROM ventas";

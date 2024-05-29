@@ -11,9 +11,8 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.mindrot.jbcrypt.BCrypt;
-
 /**
- *
+ * Este formulario permite a los usuarios iniciar sesión en el sistema.
  * @author amart
  */
 public class FrmLogin extends javax.swing.JFrame {
@@ -25,6 +24,11 @@ public class FrmLogin extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    /**
+     * Consulta la base de datos para verificar las credenciales del usuario.
+     * @param user El nombre de usuario proporcionado.
+     * @param password La contraseña proporcionada.
+     */
     public void consultarUser(String user, String password){
         Clases.Conexion objetoConex =  new Conexion();
         String userCorrecto = null;
@@ -53,6 +57,9 @@ public class FrmLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: "+e);
         }
     }
+    /**
+     * Limpia los campos de texto.
+     */
     public void limpiarCampos(){
        txtUser.setText("");
        txtPass.setText("");
